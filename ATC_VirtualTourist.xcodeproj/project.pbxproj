@@ -13,6 +13,7 @@
 		4FC713A424F3561700C36FE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC713A224F3561700C36FE6 /* Main.storyboard */; };
 		4FC713A624F3561700C36FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC713A524F3561700C36FE6 /* Assets.xcassets */; };
 		4FC713A924F3561700C36FE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC713A724F3561700C36FE6 /* LaunchScreen.storyboard */; };
+		4FC713B324F35ACC00C36FE6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713B224F35ACC00C36FE6 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4FC713A524F3561700C36FE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FC713A824F3561700C36FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FC713AA24F3561700C36FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FC713B224F35ACC00C36FE6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,32 @@
 		4FC7139B24F3561700C36FE6 /* ATC_VirtualTourist */ = {
 			isa = PBXGroup;
 			children = (
+				4FC713B124F3565B00C36FE6 /* VT Assets */,
+				4FC713B024F3562D00C36FE6 /* VT Controllers */,
 				4FC7139C24F3561700C36FE6 /* AppDelegate.swift */,
 				4FC7139E24F3561700C36FE6 /* SceneDelegate.swift */,
-				4FC713A024F3561700C36FE6 /* ViewController.swift */,
-				4FC713A224F3561700C36FE6 /* Main.storyboard */,
-				4FC713A524F3561700C36FE6 /* Assets.xcassets */,
-				4FC713A724F3561700C36FE6 /* LaunchScreen.storyboard */,
 				4FC713AA24F3561700C36FE6 /* Info.plist */,
 			);
 			path = ATC_VirtualTourist;
+			sourceTree = "<group>";
+		};
+		4FC713B024F3562D00C36FE6 /* VT Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FC713A024F3561700C36FE6 /* ViewController.swift */,
+				4FC713B224F35ACC00C36FE6 /* MapViewController.swift */,
+			);
+			path = "VT Controllers";
+			sourceTree = "<group>";
+		};
+		4FC713B124F3565B00C36FE6 /* VT Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4FC713A224F3561700C36FE6 /* Main.storyboard */,
+				4FC713A524F3561700C36FE6 /* Assets.xcassets */,
+				4FC713A724F3561700C36FE6 /* LaunchScreen.storyboard */,
+			);
+			path = "VT Assets";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 				4FC713A124F3561700C36FE6 /* ViewController.swift in Sources */,
 				4FC7139D24F3561700C36FE6 /* AppDelegate.swift in Sources */,
 				4FC7139F24F3561700C36FE6 /* SceneDelegate.swift in Sources */,
+				4FC713B324F35ACC00C36FE6 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
