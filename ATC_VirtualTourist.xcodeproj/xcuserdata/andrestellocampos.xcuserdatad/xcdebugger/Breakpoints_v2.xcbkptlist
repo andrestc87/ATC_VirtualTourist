@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "06AE27CB-778C-4221-8BD8-D7BBD912F468"
+            uuid = "4D927C1B-9E58-4D53-B3D8-09C983CB3176"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ATC_VirtualTourist/VT Controllers/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "saveMapPosition()"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "addPin(latitude:longitude:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

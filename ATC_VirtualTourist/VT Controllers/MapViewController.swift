@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 let userDefaultLatitudeKey = "latitude"
 let userDefaultLatitudeDeltaKey = "latitudeDelta"
@@ -18,11 +19,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var dataController: DataController!
+    var pins = [Pin]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+        // Sets the delegate
         mapView.delegate = self
+        self.title = "Virtual Tourist"
+        
+        // Adds the Long Press Gesture Recognizer
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         view.addGestureRecognizer(longPressGesture)
         
@@ -32,6 +38,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } else {
             print("No map information saved.")
         }
+        
+        //Load Annotations in the map
+        loadAnnotations()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +50,33 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("Guardar Defaults")
+    }
+    
+    fileprivate func loadAnnotations() {
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        
+        if let results = try? dataController.viewContext.fetch(fetchRequest){
+            print(results.count)
+            pins = results
+            var annotations = [MKPointAnnotation]()
+            for pin in pins {
+                let annotation = createAnnotation(pin: pin)
+                annotations.append(annotation)
+            }
+            mapView.addAnnotations(annotations)
+        }
+    }
+    
+    func createAnnotation(pin: Pin) -> MKPointAnnotation {
+        let annotation = MKPointAnnotation()
+        
+        if let lat = CLLocationDegrees(exactly: pin.latitude), let lon = CLLocationDegrees(exactly: pin.longitude) {
+            let coordinateLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            annotation.coordinate = coordinateLocation
+            annotation.title = "View Photos"
+        }
+        
+        return annotation
     }
     
     @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
@@ -55,9 +90,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             locationAnnotation.coordinate = locationCoordinate
             locationAnnotation.title = "View Photos"
             mapView.addAnnotation(locationAnnotation)
-            
+            addPin(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
         }
-        
     }
     
     //MapView Delegate
@@ -80,7 +114,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             print("Pin Tapped")
             saveMapPosition()
+            let photoAlbumVC = storyboard?.instantiateViewController(withIdentifier: "PhotoAlbumViewController") as! PhotoAlbumViewController
+            photoAlbumVC.annotation = view.annotation
             
+            navigationController?.pushViewController(photoAlbumVC, animated: true)
         }
     }
     
@@ -111,4 +148,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    //Adds a new Pin
+    func addPin(latitude: Double, longitude: Double) {
+        let pin = Pin(context: dataController.viewContext)
+        pin.latitude = latitude
+        pin.longitude = longitude
+        try? dataController.viewContext.save()
+        saveMapPosition()
+    }
+    
 }
+
