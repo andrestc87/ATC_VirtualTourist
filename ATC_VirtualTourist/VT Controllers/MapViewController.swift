@@ -56,7 +56,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
         
         if let results = try? dataController.viewContext.fetch(fetchRequest){
-            print(results.count)
             pins = results
             var annotations = [MKPointAnnotation]()
             for pin in pins {
@@ -69,8 +68,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func createAnnotation(pin: Pin) -> MKPointAnnotation {
         let annotation = MKPointAnnotation()
+        let latitude = (pin.latitude! as NSString).doubleValue
+        let longitude = (pin.longitude! as NSString).doubleValue
         
-        if let lat = CLLocationDegrees(exactly: pin.latitude), let lon = CLLocationDegrees(exactly: pin.longitude) {
+        if let lat = CLLocationDegrees(exactly: latitude), let lon = CLLocationDegrees(exactly: longitude) {
             let coordinateLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             annotation.coordinate = coordinateLocation
             annotation.title = "View Photos"
@@ -81,8 +82,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
         if sender.state == UIGestureRecognizer.State.began {
-            print("Add Pin")
-            
             let locationPoint = sender.location(in: mapView)
             let locationCoordinate = mapView.convert(locationPoint, toCoordinateFrom: mapView)
             print("You tapped at: \(locationCoordinate.latitude), \(locationCoordinate.longitude)")
@@ -112,11 +111,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if control == view.rightCalloutAccessoryView {
-            print("Pin Tapped")
             saveMapPosition()
             let photoAlbumVC = storyboard?.instantiateViewController(withIdentifier: "PhotoAlbumViewController") as! PhotoAlbumViewController
             photoAlbumVC.annotation = view.annotation
-            
+            photoAlbumVC.selectedPin = getPin(latitude: (view.annotation?.coordinate.latitude)!, longitude: (view.annotation?.coordinate.longitude)!)!
+            photoAlbumVC.dataController = dataController
             navigationController?.pushViewController(photoAlbumVC, animated: true)
         }
     }
@@ -129,7 +128,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         userDeaults.set(mapCoordinates.longitude, forKey: userDefaultLongitudeKey)
         userDeaults.set(mapRegionSpan.latitudeDelta, forKey: userDefaultLatitudeDeltaKey)
         userDeaults.set(mapRegionSpan.longitudeDelta, forKey: userDefaultLongitudeDeltaKey)
-        print("Data Saved")
     }
     
     func loadSavedMapPosition() {
@@ -151,10 +149,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     //Adds a new Pin
     func addPin(latitude: Double, longitude: Double) {
         let pin = Pin(context: dataController.viewContext)
-        pin.latitude = latitude
-        pin.longitude = longitude
+        pin.latitude = String(latitude)
+        pin.longitude = String(longitude)
         try? dataController.viewContext.save()
+        pins.append(pin)
         saveMapPosition()
+    }
+    
+    func getPin(latitude: Double, longitude: Double) -> Pin? {
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "latitude == %@ AND longitude == %@", String(latitude), String(longitude))
+        
+        if let results = try? dataController.viewContext.fetch(fetchRequest){
+            return results[0]
+        }
+        return nil
     }
     
 }

@@ -35,11 +35,11 @@ struct FlickrPhotos: Codable {
 }
 
 struct FlickrPhoto: Codable {
-    let id: String?
+    let id: String
     let owner: String?
-    let secret: String?
-    let server: String?
-    let farm: Int?
+    let secret: String
+    let server: String
+    let farm: Int
     let title: String?
     let ispublic: Int?
     let isfriend: Int?
@@ -55,5 +55,9 @@ struct FlickrPhoto: Codable {
         case ispublic = "ispublic"
         case isfriend = "isfriend"
         case isfamily = "isfamily"
+    }
+    
+    func photoURLString() -> String {
+        return "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret)_q.jpg"
     }
 }

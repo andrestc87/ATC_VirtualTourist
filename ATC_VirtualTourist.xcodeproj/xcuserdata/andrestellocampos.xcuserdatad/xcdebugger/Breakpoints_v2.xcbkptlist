@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4D927C1B-9E58-4D53-B3D8-09C983CB3176"
+            uuid = "63B086AD-1307-460F-978E-CDF1B9341F2A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ATC_VirtualTourist/VT Controllers/MapViewController.swift"
+            filePath = "ATC_VirtualTourist/VT Controllers/PhotoAlbumViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "addPin(latitude:longitude:)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "getStoredPhotosForPin()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

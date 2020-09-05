@@ -18,6 +18,8 @@
 		4FC713BD24FC7F2D00C36FE6 /* FlickrCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713BC24FC7F2D00C36FE6 /* FlickrCollectionViewCell.swift */; };
 		4FC713BF24FC841E00C36FE6 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713BE24FC841E00C36FE6 /* PhotoAlbumViewController.swift */; };
 		4FC713C924FCA2C400C36FE6 /* FlickrPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713C824FCA2C400C36FE6 /* FlickrPhotosResponse.swift */; };
+		4FC713CC24FF379300C36FE6 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713CB24FF379300C36FE6 /* FlickrClient.swift */; };
+		4FC713CF25033AFB00C36FE6 /* FlickrUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC713CE25033AFB00C36FE6 /* FlickrUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		4FC713BC24FC7F2D00C36FE6 /* FlickrCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FC713BE24FC841E00C36FE6 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
 		4FC713C824FCA2C400C36FE6 /* FlickrPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrPhotosResponse.swift; sourceTree = "<group>"; };
+		4FC713CB24FF379300C36FE6 /* FlickrClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
+		4FC713CE25033AFB00C36FE6 /* FlickrUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		4FC7139B24F3561700C36FE6 /* ATC_VirtualTourist */ = {
 			isa = PBXGroup;
 			children = (
+				4FC713CD25033AE200C36FE6 /* VT Utilities */,
 				4FC713C024FC981E00C36FE6 /* VT API */,
 				4FC713BA24FC7EB000C36FE6 /* VT Views */,
 				4FC713B424FC628400C36FE6 /* VT Model */,
@@ -125,6 +130,7 @@
 		4FC713C024FC981E00C36FE6 /* VT API */ = {
 			isa = PBXGroup;
 			children = (
+				4FC713CA24FF377000C36FE6 /* VT Client */,
 				4FC713C124FC982B00C36FE6 /* VT Responses */,
 			);
 			path = "VT API";
@@ -136,6 +142,22 @@
 				4FC713C824FCA2C400C36FE6 /* FlickrPhotosResponse.swift */,
 			);
 			path = "VT Responses";
+			sourceTree = "<group>";
+		};
+		4FC713CA24FF377000C36FE6 /* VT Client */ = {
+			isa = PBXGroup;
+			children = (
+				4FC713CB24FF379300C36FE6 /* FlickrClient.swift */,
+			);
+			path = "VT Client";
+			sourceTree = "<group>";
+		};
+		4FC713CD25033AE200C36FE6 /* VT Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4FC713CE25033AFB00C36FE6 /* FlickrUtil.swift */,
+			);
+			path = "VT Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,10 +235,12 @@
 				4FC713BF24FC841E00C36FE6 /* PhotoAlbumViewController.swift in Sources */,
 				4FC713BD24FC7F2D00C36FE6 /* FlickrCollectionViewCell.swift in Sources */,
 				4FC713B724FC62AD00C36FE6 /* ATC_VirtualTourist.xcdatamodeld in Sources */,
+				4FC713CF25033AFB00C36FE6 /* FlickrUtil.swift in Sources */,
 				4FC713C924FCA2C400C36FE6 /* FlickrPhotosResponse.swift in Sources */,
 				4FC7139D24F3561700C36FE6 /* AppDelegate.swift in Sources */,
 				4FC7139F24F3561700C36FE6 /* SceneDelegate.swift in Sources */,
 				4FC713B324F35ACC00C36FE6 /* MapViewController.swift in Sources */,
+				4FC713CC24FF379300C36FE6 /* FlickrClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
